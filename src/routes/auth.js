@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Register new user
 router.post('/register', async (req, res) => {
-  const { email, telefono, password } = req.body;
+  const { email, telefono, password, groupCode } = req.body;
   if (!email || !password) {
     return res.status(400).json({ message: 'Email y password son requeridos' });
   }
@@ -24,6 +24,15 @@ router.post('/register', async (req, res) => {
         password: hashed,
       },
     });
+    if (groupCode) {
+      const grupo = await prisma.grupo.findUnique({ where: { code: groupCode } });
+      if (!grupo) {
+        return res.status(400).json({ message: 'Código de grupo inválido' });
+      }
+      await prisma.participacion.create({
+        data: { userId: user.id, grupoId: grupo.id },
+      });
+    }
     res.status(201).json({ id: user.id, email: user.email });
   } catch (err) {
     console.error(err);

@@ -63,7 +63,11 @@ router.get('/', authenticateToken, async (req, res) => {
       where: { userId: req.userId },
       include: { grupo: true },
     });
-    const grupos = participaciones.map((p) => p.grupo);
+    const base = process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
+    const grupos = participaciones.map((p) => ({
+      ...p.grupo,
+      inviteLink: `${base}/index.html?code=${p.grupo.code}`,
+    }));
     res.json(grupos);
   } catch (err) {
     console.error(err);

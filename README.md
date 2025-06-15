@@ -27,6 +27,7 @@ Creación y gestión de grupos de quiniela
 Creación de grupos: Un usuario autenticado podrá crear un grupo de quiniela, actuando como administrador de ese grupo. Al crear un grupo, deberá asociarlo a un torneo específico (por ejemplo, "Mundial de Clubes FIFA 2025") que esté cargado en la base de datos. Cada grupo corresponde a un único torneo; esto simplifica la lógica ya que las predicciones de un grupo se refieren todas a los partidos de ese torneo.
 
 Invitaciones mediante código único: Tras crear el grupo, la aplicación generará un código de invitación único (p. ej., un alfanumérico corto) que el administrador podrá compartir con sus amigos. Los usuarios podrán unirse al grupo ingresando este código en la app. Alternativamente, se puede implementar un enlace de invitación que incluya el código para mayor facilidad de uso (ej. https://miquiniela.app/invitacion/ABC123).
+La aplicación devuelve este enlace dentro de la lista de grupos del usuario en el campo `inviteLink`, para que pueda compartirse fácilmente.
 
 Unirse a grupos existentes: Cualquier usuario registrado puede unirse a un grupo introduciendo el código de invitación, siempre que cumpla ciertas condiciones: (a) el grupo no haya alcanzado el límite de participantes, si es que definimos uno; (b) el torneo asociado al grupo esté activo y no demasiado avanzado (ver restricciones más abajo). Al unirse, el usuario comenzará con 0 puntos en ese grupo y podrá hacer sus pronósticos para los partidos pendientes.
 
