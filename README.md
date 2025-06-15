@@ -113,20 +113,3 @@ Stack Tecnológico Sugerido (Backend y Base de Datos)
 
 Dado que el backend será en Node.js (requisito confirmado), se propondrá una pila tecnológica centrada en el ecosistema JavaScript, complementada con una base de datos robusta y servicios externos según necesidad:
 
-- Backend en Node.js con Express para exponer una API RESTful.
-- PostgreSQL como base de datos utilizando Prisma como ORM.
-- Integraciones con servicios externos como SendGrid y Twilio para correos y mensajes.
-
-## Prisma Models
-
-The project uses [Prisma](https://www.prisma.io/) as ORM. The schema is defined in `prisma/schema.prisma` and covers:
-
-- `Usuario` – registered users
-- `Grupo` – quiniela groups linked to a `Torneo`
-- `Participacion` – membership relation between users and groups
-- `Torneo` – tournament definitions
-- `Equipo` – teams participating in a tournament
-- `Partido` – matches between teams
-- `Pronostico` – predictions made by users for each match
-
-Run `npm install` and adjust the `DATABASE_URL` in `.env` to connect to PostgreSQL. Migrations are located in `prisma/migrations`.
