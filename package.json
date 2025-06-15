@@ -1,0 +1,17 @@
+{
+  "name": "quinielapp",
+  "version": "1.0.0",
+  "description": "Plan de Desarrollo para Aplicación Web de Quinielas de Fútbol",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@prisma/client": "^6.9.0",
+    "prisma": "^6.9.0"
+  }
+}
