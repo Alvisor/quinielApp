@@ -3,6 +3,8 @@ const morgan = require('morgan');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const groupsRoutes = require('./routes/groups');
+const scrapeRoutes = require('./routes/scrape');
 const path = require('path');
 
 const app = express();
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/api', authRoutes);
+app.use('/api/groups', groupsRoutes);
+app.use('/api/scrape', scrapeRoutes);
 
 app.get('/', (req, res) => {
   res.send('quinielApp API');

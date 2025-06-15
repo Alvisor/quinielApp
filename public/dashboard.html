@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <nav>
+    <button id="loadGroups">Mis Grupos</button>
+    <button id="scrape">Cargar Torneo</button>
+  </nav>
+
+  <section>
+    <h2>Crear Grupo</h2>
+    <form id="createGroupForm">
+      <input type="text" id="groupName" placeholder="Nombre" required>
+      <input type="text" id="groupDesc" placeholder="Descripción">
+      <input type="number" id="torneoId" placeholder="Torneo ID" required>
+      <button type="submit">Crear</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Unirse a Grupo</h2>
+    <form id="joinGroupForm">
+      <input type="text" id="joinCode" placeholder="Código" required>
+      <button type="submit">Unirse</button>
+    </form>
+  </section>
+
+  <h2>Grupos</h2>
+  <ul id="groups"></ul>
+
+  <script>
+  const token = localStorage.getItem('token');
+
+  document.getElementById('scrape').onclick = async () => {
+    const res = await fetch('/api/scrape/torneo', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    alert(await res.text());
+  };
+
+  document.getElementById('createGroupForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const res = await fetch('/api/groups', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({
+        nombre: document.getElementById('groupName').value,
+        descripcion: document.getElementById('groupDesc').value,
+        torneoId: parseInt(document.getElementById('torneoId').value)
+      })
+    });
+    alert(await res.text());
+  });
+
+  document.getElementById('joinGroupForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const res = await fetch('/api/groups/join', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ code: document.getElementById('joinCode').value })
+    });
+    alert(await res.text());
+  });
+
+  document.getElementById('loadGroups').onclick = async () => {
+    const res = await fetch('/api/groups', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const groups = await res.json();
+    const list = document.getElementById('groups');
+    list.innerHTML = '';
+    groups.forEach(g => {
+      const li = document.createElement('li');
+      li.textContent = g.nombre + ' (' + g.code + ')';
+      list.appendChild(li);
+    });
+  };
+  </script>
+</body>
+</html>
