@@ -115,8 +115,9 @@ Dado que el backend será en Node.js (requisito confirmado), se propondrá una p
 
 - **Framework**: Node.js con Express, o preferentemente NestJS para una arquitectura modular.
 - **Lenguaje**: se recomienda TypeScript para aprovechar tipado estático y mejorar el mantenimiento del código.
-- **Base de datos**: PostgreSQL como motor relacional robusto y ampliamente soportado.
-- **ORM y migraciones**: puede emplearse Prisma o TypeORM para modelar entidades y ejecutar consultas de manera sencilla; ambos ofrecen herramientas de migraciones (Prisma Migrate o TypeORM migrations) para versionar el esquema.
+-- **Base de datos**: PostgreSQL como motor relacional robusto y ampliamente soportado.
+-- **ORM y migraciones**: puede emplearse Prisma o TypeORM para modelar entidades y ejecutar consultas de manera sencilla; ambos ofrecen herramientas de migraciones (Prisma Migrate o TypeORM migrations) para versionar el esquema.
+
 ### Backend stub
 
 Un servidor Express mínimo en `index.js` muestra el modelo `Torneo` con un flag `scoringLocked`. Los parámetros de puntaje pueden modificarse mediante `PATCH /torneos/:id/scoring` solo si el torneo no ha iniciado y la bandera continúa en `false`.
