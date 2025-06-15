@@ -1,0 +1,92 @@
+// Prisma schema for quinielApp
+
+// Datasource uses PostgreSQL connection from .env
+ datasource db {
+   provider = "postgresql"
+   url      = env("DATABASE_URL")
+ }
+
+ generator client {
+   provider = "prisma-client-js"
+ }
+
+ model Usuario {
+   id          Int             @id @default(autoincrement())
+   email       String          @unique
+   telefono    String?
+   password    String
+   createdAt   DateTime        @default(now())
+   updatedAt   DateTime        @updatedAt
+   grupos      Grupo[]         @relation("GrupoAdmin")
+   participaciones Participacion[]
+   pronosticos Pronostico[]
+ }
+
+ model Grupo {
+   id          Int             @id @default(autoincrement())
+   nombre      String
+   descripcion String?
+   code        String          @unique
+   torneo      Torneo          @relation(fields: [torneoId], references: [id])
+   torneoId    Int
+   admin       Usuario         @relation("GrupoAdmin", fields: [adminId], references: [id])
+   adminId     Int
+   participaciones Participacion[]
+   pronosticos Pronostico[]
+ }
+
+ model Participacion {
+   id       Int     @id @default(autoincrement())
+   user     Usuario @relation(fields: [userId], references: [id])
+   userId   Int
+   grupo    Grupo   @relation(fields: [grupoId], references: [id])
+   grupoId  Int
+   puntos   Int     @default(0)
+ }
+
+ model Torneo {
+   id        Int       @id @default(autoincrement())
+   nombre    String
+   year      Int
+   startDate DateTime
+   endDate   DateTime
+   equipos   Equipo[]
+   grupos    Grupo[]
+   partidos  Partido[]
+ }
+
+ model Equipo {
+   id        Int      @id @default(autoincrement())
+   nombre    String
+   torneo    Torneo   @relation(fields: [torneoId], references: [id])
+   torneoId  Int
+   partidosLocal     Partido[] @relation("LocalEquipo")
+   partidosVisitante Partido[] @relation("VisitanteEquipo")
+ }
+
+ model Partido {
+   id            Int       @id @default(autoincrement())
+   torneo        Torneo    @relation(fields: [torneoId], references: [id])
+   torneoId      Int
+   local         Equipo    @relation("LocalEquipo", fields: [localId], references: [id])
+   localId       Int
+   visitante     Equipo    @relation("VisitanteEquipo", fields: [visitanteId], references: [id])
+   visitanteId   Int
+   fecha         DateTime
+   golesLocal    Int?
+   golesVisitante Int?
+   pronosticos   Pronostico[]
+ }
+
+ model Pronostico {
+   id            Int       @id @default(autoincrement())
+   user          Usuario   @relation(fields: [userId], references: [id])
+   userId        Int
+   partido       Partido   @relation(fields: [partidoId], references: [id])
+   partidoId     Int
+   grupo         Grupo     @relation(fields: [grupoId], references: [id])
+   grupoId       Int
+   golesLocal    Int
+   golesVisitante Int
+   createdAt     DateTime  @default(now())
+ }
