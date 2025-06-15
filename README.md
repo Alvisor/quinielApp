@@ -113,4 +113,3 @@ Stack Tecnológico Sugerido (Backend y Base de Datos)
 
 Dado que el backend será en Node.js (requisito confirmado), se propondrá una pila tecnológica centrada en el ecosistema JavaScript, complementada con una base de datos robusta y servicios externos según necesidad:
 
-Backend en Node.js: Se recomienda utilizar Node.js junto con un framework web como Express para construir una API RESTful que sirva a la aplicación. Node es apropiado por su naturaleza asíncrona y event-driven, lo que viene bien para manejar múltiples solicitudes concurrentes (por ejemplo, muchos usuarios enviando pronósticos o consultando puntajes al mismo tiempo). Además, la comunidad Node cuenta con numerosas librerías para integraciones (como SDKs de Twilio, SendGrid, etc.). El código puede estructurarse por módulos (usuarios, grupos, pronósticos, etc.) s
