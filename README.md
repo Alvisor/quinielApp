@@ -132,3 +132,13 @@ Dado que el backend será en Node.js (requisito confirmado), se propondrá una p
    npm start
    ```
 El API estará disponible en `http://localhost:3000`.
+
+## Pruebas y front de ejemplo
+
+Se añadió Jest y Supertest para realizar pruebas unitarias básicas de las rutas de autenticación. Ejecuta los tests con:
+
+```
+npm test
+```
+
+También se incluyó un directorio `public/` con una página HTML sencilla que permite registrar y autenticar usuarios contra el API. Al iniciar el servidor podrás abrir `http://localhost:3000` en el navegador y probar los formularios.
