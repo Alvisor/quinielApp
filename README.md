@@ -117,3 +117,18 @@ Dado que el backend será en Node.js (requisito confirmado), se propondrá una p
 - **Lenguaje**: se recomienda TypeScript para aprovechar tipado estático y mejorar el mantenimiento del código.
 - **Base de datos**: PostgreSQL como motor relacional robusto y ampliamente soportado.
 - **ORM y migraciones**: puede emplearse Prisma o TypeORM para modelar entidades y ejecutar consultas de manera sencilla; ambos ofrecen herramientas de migraciones (Prisma Migrate o TypeORM migrations) para versionar el esquema.
+
+## Ejecutar backend
+
+1. Copia `.env.example` a `.env` y actualiza `DATABASE_URL` y `JWT_SECRET`.
+2. Instala dependencias con `npm install`.
+3. Ejecuta las migraciones de Prisma:
+   ```
+   npx prisma migrate deploy
+   npx prisma generate
+   ```
+4. Inicia el servidor:
+   ```
+   npm start
+   ```
+El API estará disponible en `http://localhost:3000`.
