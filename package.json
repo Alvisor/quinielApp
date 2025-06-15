@@ -4,7 +4,7 @@
   "description": "Plan de Desarrollo para Aplicación Web de Quinielas de Fútbol",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
@@ -14,14 +14,16 @@
   "type": "commonjs",
   "devDependencies": {
     "@prisma/client": "^6.9.0",
+    "jest": "^30.0.0",
+    "nodemon": "^3.0.2",
     "prisma": "^6.9.0",
-    "nodemon": "^3.0.2"
+    "supertest": "^6.3.4"
   },
   "dependencies": {
-    "express": "^4.18.2",
     "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.0",
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0"
   }
 }
