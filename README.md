@@ -113,7 +113,9 @@ Stack Tecnológico Sugerido (Backend y Base de Datos)
 
 Dado que el backend será en Node.js (requisito confirmado), se propondrá una pila tecnológica centrada en el ecosistema JavaScript, complementada con una base de datos robusta y servicios externos según necesidad:
 
-
+- Backend en Node.js con Express para exponer una API RESTful.
+- PostgreSQL como base de datos utilizando Prisma como ORM.
+- Integraciones con servicios externos como SendGrid y Twilio para correos y mensajes.
 
 ## Prisma Models
 
