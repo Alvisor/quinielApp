@@ -113,3 +113,7 @@ Stack Tecnológico Sugerido (Backend y Base de Datos)
 
 Dado que el backend será en Node.js (requisito confirmado), se propondrá una pila tecnológica centrada en el ecosistema JavaScript, complementada con una base de datos robusta y servicios externos según necesidad:
 
+- **Framework**: Node.js con Express, o preferentemente NestJS para una arquitectura modular.
+- **Lenguaje**: se recomienda TypeScript para aprovechar tipado estático y mejorar el mantenimiento del código.
+- **Base de datos**: PostgreSQL como motor relacional robusto y ampliamente soportado.
+- **ORM y migraciones**: puede emplearse Prisma o TypeORM para modelar entidades y ejecutar consultas de manera sencilla; ambos ofrecen herramientas de migraciones (Prisma Migrate o TypeORM migrations) para versionar el esquema.
