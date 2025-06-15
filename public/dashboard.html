@@ -77,7 +77,10 @@
     list.innerHTML = '';
     groups.forEach(g => {
       const li = document.createElement('li');
-      li.textContent = g.nombre + ' (' + g.code + ')';
+      const a = document.createElement('a');
+      a.href = g.inviteLink;
+      a.textContent = g.nombre + ' (' + g.code + ')';
+      li.appendChild(a);
       list.appendChild(li);
     });
   };

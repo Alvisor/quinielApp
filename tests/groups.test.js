@@ -47,4 +47,15 @@ describe('Groups routes', () => {
     expect(res.statusCode).toBe(201);
     expect(prisma.grupo.create).toHaveBeenCalled();
   });
+
+  test('lists groups with invite link', async () => {
+    prisma.participacion.findMany.mockResolvedValue([
+      { grupo: { id: 1, nombre: 'Test', code: 'abc123' } },
+    ]);
+    const res = await request(app)
+      .get('/api/groups')
+      .set('Authorization', 'Bearer ' + generateToken());
+    expect(res.statusCode).toBe(200);
+    expect(res.body[0].inviteLink).toContain('abc123');
+  });
 });

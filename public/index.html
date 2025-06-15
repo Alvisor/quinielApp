@@ -11,6 +11,7 @@
   <form id="registerForm">
     <input type="email" id="regEmail" placeholder="Email" required>
     <input type="password" id="regPass" placeholder="Password" required>
+    <input type="hidden" id="groupCode">
     <button type="submit">Register</button>
   </form>
   <h2>Login</h2>
@@ -21,6 +22,10 @@
   </form>
   <pre id="output"></pre>
 <script>
+const params = new URLSearchParams(window.location.search);
+const code = params.get('code');
+if (code) document.getElementById('groupCode').value = code;
+
 document.getElementById('registerForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const res = await fetch('/api/register', {
@@ -28,7 +33,8 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       email: document.getElementById('regEmail').value,
-      password: document.getElementById('regPass').value
+      password: document.getElementById('regPass').value,
+      groupCode: document.getElementById('groupCode').value || undefined
     })
   });
   document.getElementById('output').textContent = await res.text();
